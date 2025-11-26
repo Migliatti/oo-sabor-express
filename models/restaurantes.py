@@ -8,20 +8,17 @@ class Restaurante:
         Restaurante.restaurantes.append(self)
 
     def __str__(self):
-        return f'{self.nome} | {self.categoria}'
+        return f'{self._nome} | {self._categoria}'
     
-    def listar_restaurantes():
+    @classmethod
+    def listar_restaurantes(cls):
         print(f'{'Nome do restaurante'.ljust(20)} | {'Categoria'.ljust(20)} | {'Status'}')
-        for restaurante in Restaurante.restaurantes:
+        for restaurante in cls.restaurantes:
             print(f'{restaurante._nome.ljust(20)} | {restaurante._categoria.ljust(20)} | {restaurante.ativo.ljust(20)}')
 
     @property
     def ativo(self):
         return 'Ativo' if self._ativo else 'Desativado'
 
-restaurante_praca = Restaurante('Praça', 'Gourmet')
-
-restaurante_pizza = Restaurante('Pizza Express', 'Italiana')
-
-Restaurante.listar_restaurantes()
-
+    def alternar_status(self):
+        self._ativo = not self._ativo
