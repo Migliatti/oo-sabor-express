@@ -4,6 +4,7 @@ restaurante = Restaurante('Pizza Hut', 'Pizza')
 restaurante2 = Restaurante('Burger King', 'Hamburguer')
 restaurante3 = Restaurante('Taco Bell', 'Mexicano')
 
+restaurante.alternar_status()
 
 def main():
     Restaurante.listar_restaurantes()
