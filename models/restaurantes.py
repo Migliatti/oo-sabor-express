@@ -33,12 +33,3 @@ class Restaurante:
         avaliacao = Avaliacao(cliente, nota)
         self._avaliacoes.append(avaliacao)
     
-    def listar_avaliacoes(self):
-        print(f'Avaliações do restaurante {self._nome}:')
-        for avaliacao in self._avaliacoes:
-            print(f'{avaliacao._cliente} | {avaliacao._nota}')
-    
-    def calcular_media_avaliacoes(self):
-        if not self._avaliacoes:
-            return 0
-        return sum(avaliacao._nota for avaliacao in self._avaliacoes) / len(self._avaliacoes)
