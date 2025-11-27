@@ -1,3 +1,6 @@
+from models.avaliacao import Avaliacao
+
+
 class Restaurante:
     restaurantes = []
 
@@ -5,16 +8,19 @@ class Restaurante:
         self._nome = nome.title()
         self._categoria = categoria.upper()
         self._ativo = False
+        self._avaliacoes = []
         Restaurante.restaurantes.append(self)
 
     def __str__(self):
         return f'{self._nome} | {self._categoria}'
-    
+
     @classmethod
     def listar_restaurantes(cls):
-        print(f'{'Nome do restaurante'.ljust(20)} | {'Categoria'.ljust(20)} | {'Status'}')
+        print(
+            f'{'Nome do restaurante'.ljust(20)} | {'Categoria'.ljust(20)} | {'Status'}')
         for restaurante in cls.restaurantes:
-            print(f'{restaurante._nome.ljust(20)} | {restaurante._categoria.ljust(20)} | {restaurante.ativo.ljust(20)}')
+            print(
+                f'{restaurante._nome.ljust(20)} | {restaurante._categoria.ljust(20)} | {restaurante.ativo.ljust(20)}')
 
     @property
     def ativo(self):
@@ -22,3 +28,17 @@ class Restaurante:
 
     def alternar_status(self):
         self._ativo = not self._ativo
+
+    def receber_avaliacao(self, cliente, nota):
+        avaliacao = Avaliacao(cliente, nota)
+        self._avaliacoes.append(avaliacao)
+    
+    def listar_avaliacoes(self):
+        print(f'Avaliações do restaurante {self._nome}:')
+        for avaliacao in self._avaliacoes:
+            print(f'{avaliacao._cliente} | {avaliacao._nota}')
+    
+    def calcular_media_avaliacoes(self):
+        if not self._avaliacoes:
+            return 0
+        return sum(avaliacao._nota for avaliacao in self._avaliacoes) / len(self._avaliacoes)
