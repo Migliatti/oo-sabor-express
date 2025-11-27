@@ -23,6 +23,7 @@ restaurante3.receber_avaliacao('Ana', random.randint(1, 10))
 restaurante3.receber_avaliacao('Bruno', random.randint(1, 10))
 restaurante3.alternar_status()
 
+
 def main():
     Restaurante.listar_restaurantes()
 
